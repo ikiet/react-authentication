@@ -13,6 +13,14 @@ export const getToken = () => {
   return localStorage.getItem('token');
 }
 
+export const getTokenDuration = () => {
+  const storedExpiration = localStorage.getItem('expiration');
+
+  const expiration = new Date(storedExpiration);
+  const now = new Date();
+  return expiration.getTime() - now.getTime();
+}
+
 export const removeToken = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('expiration');
