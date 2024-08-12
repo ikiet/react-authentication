@@ -1,5 +1,6 @@
 import AuthForm from "../components/AuthForm";
 import { redirect, json } from "react-router-dom";
+import { saveToken } from "../util/auth";
 
 function AuthenticationPage() {
   return <AuthForm />;
@@ -37,6 +38,11 @@ export const action = async ({ request }) => {
       status: 500,
     });
   }
+
+  const responseData = await response.json(); 
+
+  const token = responseData.token;
+  saveToken(token);
 
   return redirect("/");
 };
