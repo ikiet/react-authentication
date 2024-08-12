@@ -17,12 +17,15 @@ import RootLayout from "./pages/Root";
 import { action as manipulateEventAction } from "./components/EventForm";
 import NewsletterPage, { action as newsletterAction } from "./pages/Newsletter";
 import { action as logoutAction } from "./pages/Logout";
+import { getToken } from "./util/auth";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+    id: 'root',
+    loader: getToken,
     children: [
       { index: true, element: <HomePage /> },
       { path: "auth", element: <AuthenticationPage />, action: authAction },
